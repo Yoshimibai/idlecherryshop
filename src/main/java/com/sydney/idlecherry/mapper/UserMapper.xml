@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sydney.idlecherry.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.sydney.idlecherry.model.User">
+    <id column="userID" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="mobilephone" jdbcType="VARCHAR" property="mobilephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="faculty" jdbcType="VARCHAR" property="faculty" />
+    <result column="startYear" jdbcType="INTEGER" property="startyear" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userID, userName, password, mobilephone, email, profile, gender, school, faculty, 
+    startYear, createTime, signature
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iuser_info
+    where userID = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from iuser_info
+    where userID = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sydney.idlecherry.model.User">
+    insert into iuser_info (userID, userName, password, 
+      mobilephone, email, profile, 
+      gender, school, faculty, 
+      startYear, createTime, signature
+      )
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mobilephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{profile,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{faculty,jdbcType=VARCHAR}, 
+      #{startyear,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sydney.idlecherry.model.User">
+    insert into iuser_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="mobilephone != null">
+        mobilephone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="profile != null">
+        profile,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="faculty != null">
+        faculty,
+      </if>
+      <if test="startyear != null">
+        startYear,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null">
+        #{profile,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="faculty != null">
+        #{faculty,jdbcType=VARCHAR},
+      </if>
+      <if test="startyear != null">
+        #{startyear,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sydney.idlecherry.model.User">
+    update iuser_info
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        mobilephone = #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null">
+        profile = #{profile,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="faculty != null">
+        faculty = #{faculty,jdbcType=VARCHAR},
+      </if>
+      <if test="startyear != null">
+        startYear = #{startyear,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userID = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sydney.idlecherry.model.User">
+    update iuser_info
+    set userName = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mobilephone = #{mobilephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      profile = #{profile,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      faculty = #{faculty,jdbcType=VARCHAR},
+      startYear = #{startyear,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR}
+    where userID = #{userid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectUsers" resultMap="BaseResultMap">
+    select * from iuser_info order by userID
+  </select>
+</mapper>

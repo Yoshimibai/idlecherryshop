@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>首页</title>
+    <!-- Fonts-->
+    <link rel="stylesheet" th:href="@{/css/fontsgoogleapis.css}">
+    <link rel="stylesheet" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/ps-icon/style.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <!-- CSS Library-->
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/owl-carousel/assets/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/plugins/slick/slick/slick.css}">
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap-select/dist/css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/Magnific-Popup/dist/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/revolution/css/settings.css}">
+    <link rel="stylesheet" th:href="@{/plugins/revolution/css/layers.css}">
+    <link rel="stylesheet" th:href="@{/plugins/revolution/css/navigation.css}">
+    <script type="text/javascript" th:src="@{/layui/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+
+
+
+
+<header class="header" th:fragment="myheader">
+    <div class="header__top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12">
+                    <p>校园二手商城，让您的闲置商品不再闲置，发现更多好玩好物！</p>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                    <div class="header__actions">
+                        <a th:href="@{/login}">登录 & 注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navigation">
+        <div class="container-fluid">
+            <div class="navigation__column left">
+                <div class="header__logo"><a class="ps-logo" th:href="@{/}">
+                    <img th:src="@{/images/logo.png}" alt=""></a></div>
+            </div>
+            <div class="navigation__column center">
+                <ul class="main-menu menu">
+                    <li class="menu-item menu-item-has-children dropdown"><a th:href="@{/}">首页</a>
+                    <li class="menu-item menu-item-has-children has-mega-menu"><a th:href="@{/product-listing}">商品清单</a>
+                    <li class="menu-item menu-item-has-children dropdown"><a th:href="@{/user/newslist}">网站公告</a></li>
+                    <li class="menu-item menu-item-has-children dropdown"><a th:href="@{/about}">关于我们</a></li>
+                    <li class="menu-item menu-item-has-children dropdown"><a th:href="@{/contacts}">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="navigation__column right">
+                <form class="ps-search--header layui-form" th:action="@{/product-search}" method="get">
+                    <input class="form-control" type="text" name="keys"
+                           lay-verify="required" lay-reqtext="商品关键字，岂能为空？" placeholder="请输入关键字">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="tosearch"><i class="ps-icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+<div class="header-services" th:fragment="myhdservices">
+    <div class="ps-services owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="7000" data-owl-gap="0"
+         data-owl-nav="true" data-owl-dots="false" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1"
+         data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
+        <p class="ps-service"><i class="ps-icon-delivery"></i>你的需求就是我的需求，您的满意就是我的满意！</p>
+        <p class="ps-service"><i class="ps-icon-delivery"></i>小市场，大甩卖，让闲置物跳回家。</p>
+        <p class="ps-service"><i class="ps-icon-delivery"></i>环保公益两不误，与你相约在校园二手商城。</p>
+    </div>
+</div>
+
+<div class="layui-carousel" id="test10">
+    <div carousel-item="">
+        <div><img th:src="@{/images/slider/3.jpg}" style="width:100%;height: 100%;"></div>
+        <div><img th:src="@{/images/slider/2.jpg}" style="width:100%;height: 100%;"></div>
+    </div>
+</div>
+
+
+
+<main class="ps-main" id="indexssss">
+    <div th:each="commodity, userState: ${commodityList}">
+        商品编号：<span th:text="${commodity.commid}"></span><br/>
+        商品名称：<span th:text="${commodity.commname}"></span><br/>
+        商品描述：<span th:text="${commodity.commdesc}"></span><br/>
+        商品价格：<span th:text="${commodity.price}"></span><br/>
+        商品详情：<a th:href="@{'/CommodityDetail?id=' + ${commodity.commid}}" style="color:blue;text-decoration:underline;">查看商品详情</a>
+        图片：<img th:src="@{${commodity.image}}"/>
+    </div>
+</main>
+
+
+
+
+<!-- JS Library-->
+<script type="text/javascript" th:src="@{/plugins/jquery/dist/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/jquery-bar-rating/dist/jquery.barrating.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/owl-carousel/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/gmap3.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/imagesloaded.pkgd.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/isotope.pkgd.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/jquery.matchHeight-min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/slick/slick/slick.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/elevatezoom/jquery.elevatezoom.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/ditugoogle.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/revolution/js/jquery.themepunch.tools.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/revolution/js/jquery.themepunch.revolution.min.js}"></script>
+<!-- Custom scripts-->
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/js/common/index.js}"></script>
+<script>
+    layui.use(['form', 'layer','carousel'], function () {
+        var form = layui.form;
+        var $ = layui.jquery,
+            layer = layui.layer;
+        var carousel = layui.carousel;
+        carousel.render({
+            elem: '#test10'
+            , width: '100%'
+            , height: '815px'
+            ,interval: 5000
+        });
+    });
+
+    function tologin() {
+        location.href = basePath + "/login";
+    }
+</script>
+</body>
+</html>

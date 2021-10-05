@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sydney.idlecherry.mapper.CommodityMapper">
+  <resultMap id="BaseResultMap" type="com.sydney.idlecherry.model.Commodity">
+    <id column="commID" jdbcType="INTEGER" property="commid" />
+    <result column="commName" jdbcType="VARCHAR" property="commname" />
+    <result column="commDesc" jdbcType="VARCHAR" property="commdesc" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="video" jdbcType="VARCHAR" property="video" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="updateTime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="commStatus" jdbcType="VARCHAR" property="commstatus" />
+    <result column="views" jdbcType="INTEGER" property="views" />
+    <result column="categoryID" jdbcType="INTEGER" property="categoryid" />
+    <result column="userID" jdbcType="INTEGER" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    commID, commName, commDesc, price, image, video, createTime, updateTime, commStatus, 
+    views, categoryID, userID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from icommodity
+    where commID = #{commid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from icommodity
+    where commID = #{commid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sydney.idlecherry.model.Commodity">
+    insert into icommodity (commID, commName, commDesc, 
+      price, image, video, 
+      createTime, updateTime, commStatus, 
+      views, categoryID, userID
+      )
+    values (#{commid,jdbcType=INTEGER}, #{commname,jdbcType=VARCHAR}, #{commdesc,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{image,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{commstatus,jdbcType=VARCHAR}, 
+      #{views,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sydney.idlecherry.model.Commodity">
+    insert into icommodity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commid != null">
+        commID,
+      </if>
+      <if test="commname != null">
+        commName,
+      </if>
+      <if test="commdesc != null">
+        commDesc,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="video != null">
+        video,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="commstatus != null">
+        commStatus,
+      </if>
+      <if test="views != null">
+        views,
+      </if>
+      <if test="categoryid != null">
+        categoryID,
+      </if>
+      <if test="userid != null">
+        userID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commid != null">
+        #{commid,jdbcType=INTEGER},
+      </if>
+      <if test="commname != null">
+        #{commname,jdbcType=VARCHAR},
+      </if>
+      <if test="commdesc != null">
+        #{commdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null">
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="commstatus != null">
+        #{commstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null">
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sydney.idlecherry.model.Commodity">
+    update icommodity
+    <set>
+      <if test="commname != null">
+        commName = #{commname,jdbcType=VARCHAR},
+      </if>
+      <if test="commdesc != null">
+        commDesc = #{commdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null">
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="commstatus != null">
+        commStatus = #{commstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null">
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        categoryID = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userID = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where commID = #{commid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sydney.idlecherry.model.Commodity">
+    update icommodity
+    set commName = #{commname,jdbcType=VARCHAR},
+      commDesc = #{commdesc,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      image = #{image,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=VARCHAR},
+      commStatus = #{commstatus,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      categoryID = #{categoryid,jdbcType=INTEGER},
+      userID = #{userid,jdbcType=INTEGER}
+    where commID = #{commid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCommodities" resultMap="BaseResultMap">
+    select * from icommodity order by commID
+  </select>
+</mapper>

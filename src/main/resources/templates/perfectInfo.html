@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>完善个人信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+    <script th:inline="javascript">
+        var basePath = [[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]];
+    </script>
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">完善个人信息</div>
+                <div class="layui-card-body" pad15>
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户ID(不可修改)</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="userID" id="userID" lay-verify="required" lay-reqtext="用户ID不能为空"
+                                       placeholder="请输入用户ID"
+                                       autocomplete="off" class="layui-input" th:value="${userID}"
+                                       style="cursor:not-allowed;" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="margin-top: 25px">头像</label>
+                            <div class="layui-input-inline">
+                                <img th:src="@{/images/cherrylogo.png}"
+                                     style="margin-left:30px; width:100px;border-radius:50%;cursor: pointer"
+                                     title="点击修改头像" alt="头像" id="uimage">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">学校</label>
+                            <div class="layui-input-block">
+                                <select name="school" lay-filter="required">
+                                    <option value="The University of Sydney">The University of Sydney</option>
+                                    <option value="The University of New South Wales">The University of New South Wales</option>
+                                    <option value="The University of Technology Sydney">The University of Technology Sydney</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">院系</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="faculty" value="" lay-verify="faculty" autocomplete="off"
+                                       placeholder="请输入所在院系" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">入学年份</label>
+                            <div class="layui-input-block">
+                                <select name="startime" lay-filter="required">
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="sex" value="male" title="male" checked>
+                                <input type="radio" name="sex" value="female" title="famale">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">个性签名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="signature" value="" lay-verify="signature" autocomplete="off"
+                                       placeholder="请入个性签名" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/layui/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/js/userInfo/perfectinfo.js}"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+商品编号：<span th:text="${commodity.commid}"></span><br/>
+商品名称：<span th:text="${commodity.commname}"></span><br/>
+商品描述：<span th:text="${commodity.commdesc}"></span><br/>
+商品价格：<span th:text="${commodity.price}"></span><br/>
+图片：<img th:src="@{${commodity.image}}"/>
+
+</body>
+</html>
